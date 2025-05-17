@@ -1,0 +1,22 @@
+{
+    "sourceFile": "test/widget_test.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1747055530103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1747188869736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,8 @@\n import 'package:drawing/main.dart';\r\n import 'package:flutter/material.dart';\r\n import 'package:flutter_test/flutter_test.dart';\r\n \r\n-\r\n void main() {\r\n   testWidgets('Counter increments smoke test', (WidgetTester tester) async {\r\n     // Build our app and trigger a frame.\r\n     await tester.pumpWidget(const MyApp());\r\n"
+                }
+            ],
+            "date": 1747055530103,
+            "name": "Commit-0",
+            "content": "// This is a basic Flutter widget test.\r\n//\r\n// To perform an interaction with a widget in your test, use the WidgetTester\r\n// utility in the flutter_test package. For example, you can send tap and scroll\r\n// gestures. You can also use WidgetTester to find child widgets in the widget\r\n// tree, read text, and verify that the values of widget properties are correct.\r\n\r\nimport 'package:drawing/main.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:flutter_test/flutter_test.dart';\r\n\r\n\r\nvoid main() {\r\n  testWidgets('Counter increments smoke test', (WidgetTester tester) async {\r\n    // Build our app and trigger a frame.\r\n    await tester.pumpWidget(const MyApp());\r\n\r\n    // Verify that our counter starts at 0.\r\n    expect(find.text('0'), findsOneWidget);\r\n    expect(find.text('1'), findsNothing);\r\n\r\n    // Tap the '+' icon and trigger a frame.\r\n    await tester.tap(find.byIcon(Icons.add));\r\n    await tester.pump();\r\n\r\n    // Verify that our counter has incremented.\r\n    expect(find.text('0'), findsNothing);\r\n    expect(find.text('1'), findsOneWidget);\r\n  });\r\n}\r\n"
+        }
+    ]
+}

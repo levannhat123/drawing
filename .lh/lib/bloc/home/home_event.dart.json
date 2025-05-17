@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/bloc/home/home_event.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1747191097881,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1747191097881,
+            "name": "Commit-0",
+            "content": "part of 'home_bloc.dart';\n\nsealed class HomeEvent extends Equatable {\n  const HomeEvent();\n\n  @override\n  List<Object> get props => [];\n}\n\nclass LoadDrawings extends HomeEvent {}\n\nclass DeleteDrawing extends HomeEvent {\n  final String drawingName;\n  DeleteDrawing(this.drawingName);\n}\n"
+        }
+    ]
+}

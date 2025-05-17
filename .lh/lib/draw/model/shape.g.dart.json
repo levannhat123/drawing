@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/draw/model/shape.g.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1747019513341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1747019513341,
+            "name": "Commit-0",
+            "content": "// GENERATED CODE - DO NOT MODIFY BY HAND\n\npart of 'shape.dart';\n\n// **************************************************************************\n// TypeAdapterGenerator\n// **************************************************************************\n\nclass ShapeAdapter extends TypeAdapter<Shape> {\n  @override\n  final int typeId = 2;\n\n  @override\n  Shape read(BinaryReader reader) {\n    final numOfFields = reader.readByte();\n    final fields = <int, dynamic>{\n      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),\n    };\n    return Shape(\n      type: fields[0] as ShapeType,\n      startPoint: fields[1] as Offset,\n      endPoint: fields[2] as Offset,\n      color: fields[3] as int,\n      strokeWidth: fields[4] as double,\n    );\n  }\n\n  @override\n  void write(BinaryWriter writer, Shape obj) {\n    writer\n      ..writeByte(7)\n      ..writeByte(0)\n      ..write(obj.type)\n      ..writeByte(1)\n      ..write(obj.startPoint)\n      ..writeByte(2)\n      ..write(obj.endPoint)\n      ..writeByte(3)\n      ..write(obj.color)\n      ..writeByte(4)\n      ..write(obj.strokeWidth)\n      ..writeByte(5);\n  }\n\n  @override\n  int get hashCode => typeId.hashCode;\n\n  @override\n  bool operator ==(Object other) =>\n      identical(this, other) ||\n      other is ShapeAdapter &&\n          runtimeType == other.runtimeType &&\n          typeId == other.typeId;\n}\n"
+        }
+    ]
+}

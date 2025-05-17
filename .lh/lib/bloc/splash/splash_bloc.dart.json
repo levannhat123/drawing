@@ -1,0 +1,26 @@
+{
+    "sourceFile": "lib/bloc/splash/splash_bloc.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1747188717241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1747188950488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,13 @@\n part 'splash_state.dart';\n \n class SplashBloc extends Bloc<SplashEvent, SplashState> {\n   SplashBloc() : super(SplashInitial()) {\n-    on<CheckAuth>(_onCheckAuth);\n+    on<SetSplash>(_onCheckAuth);\n   }\n \n   Future<void> _onCheckAuth(\n-    CheckAuth event,\n+    SetSplash event,\n     Emitter<SplashState> emit,\n   ) async {\n     emit(SplashLoading());\n \n"
+                },
+                {
+                    "date": 1747189113539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,16 +5,20 @@\n part 'splash_state.dart';\n \n class SplashBloc extends Bloc<SplashEvent, SplashState> {\n   SplashBloc() : super(SplashInitial()) {\n-    on<SetSplash>(_onCheckAuth);\n+    on<SetSplash>(\n+      (event, emit) {\n+        \n+      },\n+    );\n   }\n \n-  Future<void> _onCheckAuth(\n-    SetSplash event,\n-    Emitter<SplashState> emit,\n-  ) async {\n-    emit(SplashLoading());\n+  // Future<void> _onCheckAuth(\n+  //   SetSplash event,\n+  //   Emitter<SplashState> emit,\n+  // ) async {\n+  //   emit(SplashLoading());\n \n-    await Future.delayed(const Duration(seconds: 2)); // Simulate loading\n-  }\n+  //   await Future.delayed(const Duration(seconds: 2)); // Simulate loading\n+  // }\n }\n"
+                }
+            ],
+            "date": 1747188717241,
+            "name": "Commit-0",
+            "content": "import 'package:flutter_bloc/flutter_bloc.dart';\nimport 'package:equatable/equatable.dart';\n\npart 'splash_event.dart';\npart 'splash_state.dart';\n\nclass SplashBloc extends Bloc<SplashEvent, SplashState> {\n  SplashBloc() : super(SplashInitial()) {\n    on<CheckAuth>(_onCheckAuth);\n  }\n\n  Future<void> _onCheckAuth(\n    CheckAuth event,\n    Emitter<SplashState> emit,\n  ) async {\n    emit(SplashLoading());\n    \n   \n    await Future.delayed(const Duration(seconds: 2)); // Simulate loading\n  \n  \n  }\n}\n"
+        }
+    ]
+}

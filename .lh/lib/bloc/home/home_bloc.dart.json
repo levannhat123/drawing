@@ -1,0 +1,30 @@
+{
+    "sourceFile": "lib/bloc/home/home_bloc.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1747191128719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1747191189172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,36 @@\n+\n+\n import 'dart:typed_data';\n+import 'package:flutter_bloc/flutter_bloc.dart';\n+import 'package:hive/hive.dart';\n \n-import 'package:bloc/bloc.dart';\n-import 'package:equatable/equatable.dart';\n-\n-part 'home_event.dart';\n+part  'home_event.dart';\n part 'home_state.dart';\n \n class HomeBloc extends Bloc<HomeEvent, HomeState> {\n+  late Box<Map<dynamic, dynamic>> _drawingBox;\n+\n   HomeBloc() : super(HomeInitial()) {\n-    on<HomeEvent>((event, emit) {\n-      // TODO: implement event handler\n+    _drawingBox = Hive.box<Map<dynamic, dynamic>>('drawingBox');\n+\n+    on<LoadDrawings>((event, emit) {\n+      emit(HomeLoading());\n+      try {\n+        final drawingNames = _drawingBox.keys.cast<String>().toList();\n+        final thumbnails = <String, Uint8List?>{};\n+        for (var name in drawingNames) {\n+          final data = _drawingBox.get(name);\n+          thumbnails[name] = data?['thumbnail'];\n+        }\n+        emit(HomeLoaded(drawingNames: drawingNames, thumbnails: thumbnails));\n+      } catch (e) {\n+        emit(HomeError('Không thể tải bản vẽ.'));\n+      }\n     });\n+\n+    on<DeleteDrawing>((event, emit) async {\n+      await _drawingBox.delete(event.drawingName);\n+      add(LoadDrawings());\n+    });\n   }\n }\n"
+                },
+                {
+                    "date": 1747191214811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,35 @@\n+import 'dart:typed_data';\n+import 'package:equatable/equatable.dart';\n+import 'package:flutter_bloc/flutter_bloc.dart';\n+import 'package:hive/hive.dart';\n+\n+part 'home_event.dart';\n+part 'home_state.dart';\n+\n+class HomeBloc extends Bloc<HomeEvent, HomeState> {\n+  late Box<Map<dynamic, dynamic>> _drawingBox;\n+\n+  HomeBloc() : super(HomeInitial()) {\n+    _drawingBox = Hive.box<Map<dynamic, dynamic>>('drawingBox');\n+\n+    on<LoadDrawings>((event, emit) {\n+      emit(HomeLoading());\n+      try {\n+        final drawingNames = _drawingBox.keys.cast<String>().toList();\n+        final thumbnails = <String, Uint8List?>{};\n+        for (var name in drawingNames) {\n+          final data = _drawingBox.get(name);\n+          thumbnails[name] = data?['thumbnail'];\n+        }\n+        emit(HomeLoaded(drawingNames: drawingNames, thumbnails: thumbnails));\n+      } catch (e) {\n+        emit(HomeError('Không thể tải bản vẽ.'));\n+      }\n+    });\n+\n+    on<DeleteDrawing>((event, emit) async {\n+      await _drawingBox.delete(event.drawingName);\n+      add(LoadDrawings());\n+    });\n+  }\n+}\n"
+                },
+                {
+                    "date": 1747319365824,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,36 +6,30 @@\n part 'home_event.dart';\n part 'home_state.dart';\n \n class HomeBloc extends Bloc<HomeEvent, HomeState> {\n-  final Box<Map<dynamic, dynamic>> drawingBox;\n+  late Box<Map<dynamic, dynamic>> _drawingBox;\n \n-  HomeBloc(this.drawingBox) : super(HomeInitial()) {\n-    on<HomeEvent>((event, emit) {\n-      // TODO: implement event handler\n-    });\n+  HomeBloc() : super(HomeInitial()) {\n+    _drawingBox = Hive.box<Map<dynamic, dynamic>>('drawingBox');\n \n     on<LoadDrawings>((event, emit) {\n       emit(HomeLoading());\n       try {\n-        final drawingNames = drawingBox.keys.cast<String>().toList();\n+        final drawingNames = _drawingBox.keys.cast<String>().toList();\n         final thumbnails = <String, Uint8List?>{};\n         for (var name in drawingNames) {\n-          final data = drawingBox.get(name);\n+          final data = _drawingBox.get(name);\n           thumbnails[name] = data?['thumbnail'];\n         }\n         emit(HomeLoaded(drawingNames: drawingNames, thumbnails: thumbnails));\n       } catch (e) {\n-        emit(HomeError('Không thể tải danh sách bản vẽ. Vui lòng thử lại sau.'));\n+        emit(HomeError('Không thể tải bản vẽ.'));\n       }\n     });\n \n     on<DeleteDrawing>((event, emit) async {\n-      try {\n-        await drawingBox.delete(event.drawingName);\n-        add(LoadDrawings());\n-      } catch (e) {\n-        emit(HomeError('Không thể xóa bản vẽ. Vui lòng thử lại sau.'));\n-      }\n+      await _drawingBox.delete(event.drawingName);\n+      add(LoadDrawings());\n     });\n   }\n }\n"
+                }
+            ],
+            "date": 1747191128719,
+            "name": "Commit-0",
+            "content": "import 'dart:typed_data';\n\nimport 'package:bloc/bloc.dart';\nimport 'package:equatable/equatable.dart';\n\npart 'home_event.dart';\npart 'home_state.dart';\n\nclass HomeBloc extends Bloc<HomeEvent, HomeState> {\n  HomeBloc() : super(HomeInitial()) {\n    on<HomeEvent>((event, emit) {\n      // TODO: implement event handler\n    });\n  }\n}\n"
+        }
+    ]
+}

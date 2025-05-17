@@ -1,0 +1,46 @@
+{
+    "sourceFile": "lib/splash/splash_screen.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1746622251031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1746622588593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,10 @@\n   @override\r\n   State<SplashScreen> createState() => _SplashScreenState();\r\n }\r\n \r\n-class _SplashScreenState extends State<SplashScreen> {\r\n+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {\r\n+  late AnimationController _controller;\r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Container();\r\n   }\r\n"
+                },
+                {
+                    "date": 1746622639590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,28 @@\n+import 'package:flutter/material.dart';\r\n+\r\n+class SplashScreen extends StatefulWidget {\r\n+  const SplashScreen({super.key});\r\n+\r\n+  @override\r\n+  State<SplashScreen> createState() => _SplashScreenState();\r\n+}\r\n+\r\n+class _SplashScreenState extends State<SplashScreen>\r\n+    with SingleTickerProviderStateMixin {\r\n+  late AnimationController _controller;\r\n+  late Animation<double> _fadeAnimation;\r\n+  @override\r\n+  void initState() {\r\n+    // TODO: implement initState\r\n+    super.initState();\r\n+    _controller = AnimationController(\r\n+      duration: const Duration(seconds: 2),\r\n+      vsync: this,\r\n+    );\r\n+  }\r\n+\r\n+  @override\r\n+  Widget build(BuildContext context) {\r\n+    return Container();\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1746622662094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,28 @@\n+import 'package:flutter/material.dart';\r\n+\r\n+class SplashScreen extends StatefulWidget {\r\n+  const SplashScreen({super.key});\r\n+\r\n+  @override\r\n+  State<SplashScreen> createState() => _SplashScreenState();\r\n+}\r\n+\r\n+class _SplashScreenState extends State<SplashScreen>\r\n+    with SingleTickerProviderStateMixin {\r\n+  late AnimationController _controller;\r\n+  late Animation<double> _fadeAnimation;\r\n+  @override\r\n+  void initState() {\r\n+    // TODO: implement initState\r\n+    _controller = AnimationController(\r\n+      duration: const Duration(seconds: 2),\r\n+      vsync: this,\r\n+    );\r\n+    super.initState();\r\n+  }\r\n+\r\n+  @override\r\n+  Widget build(BuildContext context) {\r\n+    return Container();\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1746622677711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       duration: const Duration(seconds: 2),\r\n       vsync: this,\r\n     );\r\n     super.initState();\r\n-  }\r\n+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);}\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Container();\r\n"
+                },
+                {
+                    "date": 1746622866339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,30 @@\n+import 'package:flutter/material.dart';\r\n+\r\n+class SplashScreen extends StatefulWidget {\r\n+  const SplashScreen({super.key});\r\n+\r\n+  @override\r\n+  State<SplashScreen> createState() => _SplashScreenState();\r\n+}\r\n+\r\n+class _SplashScreenState extends State<SplashScreen>\r\n+    with SingleTickerProviderStateMixin {\r\n+  late AnimationController _controller;\r\n+  late Animation<double> _fadeAnimation;\r\n+  @override\r\n+  void initState() {\r\n+    // TODO: implement initState\r\n+    _controller = AnimationController(\r\n+      duration: const Duration(seconds: 2),\r\n+      vsync: this,\r\n+    );\r\n+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);\r\n+    _controller.forward()\r\n+    super.initState();\r\n+  }\r\n+\r\n+  @override\r\n+  Widget build(BuildContext context) {\r\n+    return Container();\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1746622915370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,10 @@\n       vsync: this,\r\n     );\r\n     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);\r\n     _controller.forward();\r\n+   \r\n+   Future.delayed()\r\n     super.initState();\r\n   }\r\n \r\n   @override\r\n"
+                },
+                {
+                    "date": 1746622945195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,34 @@\n+import 'package:flutter/material.dart';\r\n+\r\n+class SplashScreen extends StatefulWidget {\r\n+  const SplashScreen({super.key});\r\n+\r\n+  @override\r\n+  State<SplashScreen> createState() => _SplashScreenState();\r\n+}\r\n+\r\n+class _SplashScreenState extends State<SplashScreen>\r\n+    with SingleTickerProviderStateMixin {\r\n+  late AnimationController _controller;\r\n+  late Animation<double> _fadeAnimation;\r\n+  @override\r\n+  void initState() {\r\n+    // TODO: implement initState\r\n+    _controller = AnimationController(\r\n+      duration: const Duration(seconds: 2),\r\n+      vsync: this,\r\n+    );\r\n+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);\r\n+    _controller.forward();\r\n+\r\n+    Future.delayed(const Duration(seconds: 3), () {\r\n+      Navigator.pushReplacementNamed(context, '/home');\r\n+    });\r\n+    super.initState();\r\n+  }\r\n+\r\n+  @override\r\n+  Widget build(BuildContext context) {\r\n+    return Container();\r\n+  }\r\n+}\r\n"
+                }
+            ],
+            "date": 1746622251031,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\r\n\r\nclass SplashScreen extends StatefulWidget {\r\n  const SplashScreen({super.key});\r\n\r\n  @override\r\n  State<SplashScreen> createState() => _SplashScreenState();\r\n}\r\n\r\nclass _SplashScreenState extends State<SplashScreen> {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Container();\r\n  }\r\n}\r\n"
+        }
+    ]
+}

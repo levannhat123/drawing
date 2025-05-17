@@ -1,0 +1,70 @@
+{
+    "sourceFile": "lib/draw/model/thumbnail.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1746844087706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1746844133550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,16 @@\n+import 'dart:typed_data';\r\n+\r\n+import 'package:drawing/draw/model/stroke.dart';\r\n+\r\n+Future<Uint8List> generateThumbnail(List<Stroke>,double width,double height ) async {\r\n+  // Use the image library to decode the image data\r\n+  final image = await decodeImageFromList(imageData);\r\n+\r\n+  // Create a thumbnail by resizing the image\r\n+  final thumbnail = copyResize(image, width: 100, height: 100);\r\n+\r\n+  // Encode the thumbnail back to bytes\r\n+  final thumbnailBytes = encodePng(thumbnail);\r\n+\r\n+  return thumbnailBytes;\r\n+}\r\n"
+                },
+                {
+                    "date": 1746844162709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,12 @@\n import 'dart:typed_data';\r\n \r\n import 'package:drawing/draw/model/stroke.dart';\r\n \r\n-Future<Uint8List> generateThumbnail(List<Stroke>,double width,double height ) async {\r\n+Future<Uint8List> generateThumbnail(\r\n+    List<Stroke> strokes, double width, double height) async {\r\n   // Use the image library to decode the image data\r\n-  final image = await decodeImageFromList(imageData);\r\n \r\n   // Create a thumbnail by resizing the image\r\n-  final thumbnail = copyResize(image, width: 100, height: 100);\r\n \r\n   // Encode the thumbnail back to bytes\r\n-  final thumbnailBytes = encodePng(thumbnail);\r\n-\r\n-  return thumbnailBytes;\r\n }\r\n"
+                },
+                {
+                    "date": 1746844218405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,15 @@\n+import 'dart:typed_data';\r\n+import 'dart:ui';\r\n+\r\n+import 'package:drawing/draw/model/stroke.dart';\r\n+\r\n+Future<Uint8List> generateThumbnail(\r\n+    List<Stroke> strokes, double width, double height) async {\r\n+  final recorder = PictureRecorder();\r\n+  final canvas =\r\n+      Canvas(recorder, Rect.fromPoints(Offset(0, 0), Offset(width, height)));\r\n+  final paint = Paint()\r\n+    ..color = const Color(0xFF000000)\r\n+    ..style = PaintingStyle.stroke\r\n+    ..strokeWidth = 4.0;\r\n+}\r\n"
+                },
+                {
+                    "date": 1746844239472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n \r\n Future<Uint8List> generateThumbnail(\r\n     List<Stroke> strokes, double width, double height) async {\r\n   final recorder = PictureRecorder();\r\n-  final canvas =\r\n-      Canvas(recorder, Rect.fromPoints(Offset(0, 0), Offset(width, height)));\r\n+  final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width, height));\r\n   final paint = Paint()\r\n     ..color = const Color(0xFF000000)\r\n     ..style = PaintingStyle.stroke\r\n     ..strokeWidth = 4.0;\r\n"
+                },
+                {
+                    "date": 1746844263700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,16 @@\n+import 'dart:typed_data';\r\n+import 'dart:ui';\r\n+\r\n+import 'package:drawing/draw/model/stroke.dart';\r\n+\r\n+Future<Uint8List> generateThumbnail(\r\n+    List<Stroke> strokes, double width, double height) async {\r\n+  final recorder = PictureRecorder();\r\n+  final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width, height));\r\n+  final paint = Paint()\r\n+    ..color = const Color(0xFF000000)\r\n+    ..style = PaintingStyle.stroke\r\n+    ..strokeWidth = 4.0;\r\n+\r\n+    return \r\n+}\r\n"
+                },
+                {
+                    "date": 1746844298434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,16 @@\n+import 'dart:typed_data';\r\n+import 'dart:ui';\r\n+\r\n+import 'package:drawing/draw/model/stroke.dart';\r\n+\r\n+Future<Uint8List> generateThumbnail(\r\n+    List<Stroke> strokes, double width, double height) async {\r\n+  final recorder = PictureRecorder();\r\n+  final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width, height));\r\n+  final paint = Paint()\r\n+    ..color =  Colors.grey\r\n+    ..style = PaintingStyle.stroke\r\n+    ..strokeWidth = 4.0;\r\n+\r\n+    return \r\n+}\r\n"
+                },
+                {
+                    "date": 1746844319773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,17 @@\n+import 'dart:typed_data';\r\n+import 'dart:ui';\r\n+\r\n+import 'package:drawing/draw/model/stroke.dart';\r\n+import 'package:flutter/material.dart';\r\n+\r\n+Future<Uint8List> generateThumbnail(\r\n+    List<Stroke> strokes, double width, double height) async {\r\n+  final recorder = PictureRecorder();\r\n+  final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width, height));\r\n+  final paint = Paint()\r\n+    ..color =  Colors.grey\r\n+    ..style = PaintingStyle.stroke\r\n+    ..strokeWidth = 4.0;\r\n+\r\n+    return \r\n+}\r\n"
+                },
+                {
+                    "date": 1746844343092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,8 @@\n     List<Stroke> strokes, double width, double height) async {\r\n   final recorder = PictureRecorder();\r\n   final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width, height));\r\n   final paint = Paint()\r\n-    ..color =  Colors.grey\r\n-    ..style = PaintingStyle.stroke\r\n-    ..strokeWidth = 4.0;\r\n-\r\n-    return \r\n+    ..color = Colors.grey\r\n+    ..style = PaintingStyle.fill;\r\n+  canvas.drawRect(Rect.fromLTWH(0, 0, width, height), paint);\r\n }\r\n"
+                },
+                {
+                    "date": 1746844366133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,17 @@\n   final paint = Paint()\r\n     ..color = Colors.grey\r\n     ..style = PaintingStyle.fill;\r\n   canvas.drawRect(Rect.fromLTWH(0, 0, width, height), paint);\r\n+  for (var stroke in strokes) {\r\n+    final path = Path();\r\n+    path.moveTo(stroke.points[0].dx, stroke.points[0].dy);\r\n+    for (var point in stroke.points) {\r\n+      path.lineTo(point.dx, point.dy);\r\n+    }\r\n+    paint\r\n+      ..color = stroke.color\r\n+      ..strokeWidth = stroke.strokeWidth\r\n+      ..style = PaintingStyle.stroke;\r\n+    canvas.drawPath(path, paint);\r\n+  }\r\n }\r\n"
+                },
+                {
+                    "date": 1746844413298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,27 @@\n+import 'dart:typed_data';\r\n+import 'dart:ui';\r\n+\r\n+import 'package:drawing/draw/model/stroke.dart';\r\n+import 'package:flutter/material.dart';\r\n+\r\n+Future<Uint8List> generateThumbnail(\r\n+    List<Stroke> strokes, double width, double height) async {\r\n+  final recorder = PictureRecorder();\r\n+  final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width, height));\r\n+  final paint = Paint()\r\n+    ..color = Colors.grey\r\n+    ..style = PaintingStyle.fill;\r\n+  canvas.drawRect(Rect.fromLTWH(0, 0, width, height), paint);\r\n+  for (var stroke in strokes) {\r\n+    final strokePaint = Paint();\r\n+    path.moveTo(stroke.points[0].dx, stroke.points[0].dy);\r\n+    for (var point in stroke.points) {\r\n+      path.lineTo(point.dx, point.dy);\r\n+    }\r\n+    paint\r\n+      ..color = stroke.color\r\n+      ..strokeWidth = stroke.strokeWidth\r\n+      ..style = PaintingStyle.stroke;\r\n+    canvas.drawPath(path, paint);\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1746844440407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+import 'dart:typed_data';\r\n+import 'dart:ui';\r\n+\r\n+import 'package:drawing/draw/model/stroke.dart';\r\n+import 'package:flutter/material.dart';\r\n+\r\n+Future<Uint8List> generateThumbnail(\r\n+    List<Stroke> strokes, double width, double height) async {\r\n+  final recorder = PictureRecorder();\r\n+  final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width, height));\r\n+  final paint = Paint()\r\n+    ..color = Colors.grey\r\n+    ..style = PaintingStyle.fill;\r\n+  canvas.drawRect(Rect.fromLTWH(0, 0, width, height), paint);\r\n+  for (var stroke in strokes) {\r\n+    final strokePaint = Paint();\r\n+     ..color = stroke.color\r\n+      ..strokeCap = StrokeCap.round\r\n+      ..strokeWidth = stroke.strokeWidth;\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1746844483781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     ..style = PaintingStyle.fill;\r\n   canvas.drawRect(Rect.fromLTWH(0, 0, width, height), paint);\r\n   for (var stroke in strokes) {\r\n     final strokePaint = Paint()\r\n-      ..color = stroke.color\r\n+      ..color = stroke.toColor\r\n       ..strokeCap = StrokeCap.round\r\n-      ..strokeWidth = stroke.strokeWidth;\r\n+      ..strokeWidth = stroke.brushSize;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1746844518042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,6 +16,7 @@\n     final strokePaint = Paint()\r\n       ..color = stroke.toColor\r\n       ..strokeCap = StrokeCap.round\r\n       ..strokeWidth = stroke.brushSize;\r\n+      final points= stroke.\r\n   }\r\n }\r\n"
+                }
+            ],
+            "date": 1746844087706,
+            "name": "Commit-0",
+            "content": "import 'dart:typed_data';\r\n\r\nFuture<Uint8List> generateThumbnail(Uint8List imageData) async {\r\n  // Use the image library to decode the image data\r\n  final image = await decodeImageFromList(imageData);\r\n\r\n  // Create a thumbnail by resizing the image\r\n  final thumbnail = copyResize(image, width: 100, height: 100);\r\n\r\n  // Encode the thumbnail back to bytes\r\n  final thumbnailBytes = encodePng(thumbnail);\r\n\r\n  return thumbnailBytes;\r\n}\r\n"
+        }
+    ]
+}

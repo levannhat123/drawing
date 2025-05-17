@@ -1,0 +1,30 @@
+{
+    "sourceFile": "lib/draw/model/shape.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1747017135383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1747017247334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import 'package:flutter/material.dart';\r\n-part 'shape.g.dart';\r\n \r\n enum ShapeType {\r\n   rectangle,\r\n   circle,\r\n"
+                },
+                {
+                    "date": 1747018697542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     required this.endPoint,\r\n     required this.color,\r\n     required this.strokeWidth,\r\n     this.text,\r\n-    this.textFontSize,\r\n+    this.textFontSize, \r\n   });\r\n \r\n   // Getter để lấy Color từ int\r\n   Color get toColor => Color(color);\r\n"
+                },
+                {
+                    "date": 1747019440114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,28 +21,23 @@\n   final int color; // Lưu int thay vì Color\r\n   @HiveField(4)\r\n   final double strokeWidth;\r\n   @HiveField(5)\r\n-  final String? text; // For text type\r\n-  @HiveField(6)\r\n-  final double? textFontSize; // For text type\r\n+ // For text type\r\n \r\n   Shape({\r\n     required this.type,\r\n     required this.startPoint,\r\n     required this.endPoint,\r\n     required this.color,\r\n     required this.strokeWidth,\r\n-    this.text,\r\n-    this.textFontSize,\r\n+  \r\n   });\r\n \r\n   // Getter để lấy Color từ int\r\n   Color get toColor => Color(color);\r\n \r\n   // Getter để lấy TextStyle cho text\r\n-  TextStyle? get textStyle => textFontSize != null\r\n-      ? TextStyle(fontSize: textFontSize, color: toColor)\r\n-      : null;\r\n+ \r\n \r\n   // Nếu bạn vẫn muốn toJson/fromJson thì có thể giữ lại, nhưng Hive không cần\r\n }\r\n"
+                }
+            ],
+            "date": 1747017135383,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\r\npart 'shape.g.dart';\r\n\r\nenum ShapeType {\r\n  rectangle,\r\n  circle,\r\n  line,\r\n  text,\r\n}\r\n\r\nclass Shape {\r\n  final ShapeType type;\r\n  final Offset startPoint;\r\n  final Offset endPoint;\r\n  final Color color;\r\n  final double strokeWidth;\r\n  final String? text; // For text type\r\n  final TextStyle? textStyle; // For text type\r\n\r\n  Shape({\r\n    required this.type,\r\n    required this.startPoint,\r\n    required this.endPoint,\r\n    required this.color,\r\n    required this.strokeWidth,\r\n    this.text,\r\n    this.textStyle,\r\n  });\r\n\r\n  Map<String, dynamic> toJson() {\r\n    return {\r\n      'type': type.toString(),\r\n      'startPoint': {'dx': startPoint.dx, 'dy': startPoint.dy},\r\n      'endPoint': {'dx': endPoint.dx, 'dy': endPoint.dy},\r\n      'color': color.value,\r\n      'strokeWidth': strokeWidth,\r\n      'text': text,\r\n      'textStyle': textStyle?.fontSize,\r\n    };\r\n  }\r\n\r\n  factory Shape.fromJson(Map<String, dynamic> json) {\r\n    return Shape(\r\n      type: ShapeType.values.firstWhere(\r\n        (e) => e.toString() == json['type'],\r\n      ),\r\n      startPoint: Offset(\r\n        json['startPoint']['dx'],\r\n        json['startPoint']['dy'],\r\n      ),\r\n      endPoint: Offset(\r\n        json['endPoint']['dx'],\r\n        json['endPoint']['dy'],\r\n      ),\r\n      color: Color(json['color']),\r\n      strokeWidth: json['strokeWidth'],\r\n      text: json['text'],\r\n      textStyle: json['textStyle'] != null\r\n          ? TextStyle(fontSize: json['textStyle'])\r\n          : null,\r\n    );\r\n  }\r\n} "
+        }
+    ]
+}

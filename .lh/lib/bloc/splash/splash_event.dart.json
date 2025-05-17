@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/bloc/splash/splash_event.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1747188933272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1747189566089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n part of 'splash_bloc.dart';\n \n-sealed class SplashEvent extends Equatable {\n+abstract class SplashEvent extends Equatable {\n   const SplashEvent();\n \n   @override\n   List<Object> get props => [];\n }\n+\n+class SetSplash extends SplashEvent {}\n"
+                }
+            ],
+            "date": 1747188933272,
+            "name": "Commit-0",
+            "content": "part of 'splash_bloc.dart';\n\nabstract class SplashEvent extends Equatable {\n  const SplashEvent();\n\n  @override\n  List<Object> get props => [];\n}\n\nclass SetSplash extends SplashEvent {}\n"
+        }
+    ]
+}
